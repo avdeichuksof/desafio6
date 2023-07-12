@@ -1,0 +1,40 @@
+<div class="container">
+    <h1 class="text-center">By Sof - Products</h1>
+    
+        <h3 class="welcome">Bienvenido/a {{user.username}}</h3>
+
+    <a href="/auth/logout" class="btn btn-outline-danger mb-4">Logout</a>
+
+    <div class="productsContainer">
+        {{#each products}}
+            <div class="mb-3 w-50">
+                <div class="card">
+                <h5 class="card-header text-center"> {{this.title}} </h5>
+                <img class="card-image" src="#" alt="{{this.title}}">
+                <div class="card-body text-center"> 
+                    <em class="card-title"> {{this.description}} </em>
+                    <p class="card-text text-center"> <b> ${{this.price}} </b>  </p>
+                    <small class="d-block">id: {{this._id}} </small>
+                    <button class="btn btn-outline-success mt-2" type="submit" onclick='addToCart({{this._id}})'>Add to cart</button>
+                    </div>
+                </div>
+            </div>
+        {{/each}}    
+
+        {{#if pagination.hasPrevPage}}
+            <a style='font-size: 20;' href='/index/?page={{pagination.prevPage}}'>⬅{{pagination.prevPage}}</a>
+        {{/if}}
+            <a style='font-size: 20;' href='#'>{{pagination.page}}</a>
+        {{#if pagination.hasNextPage}}
+            <a style='font-size: 20;' href='/index/?page={{pagination.nextPage}}'>{{pagination.nextPage}}➡</a>
+        {{/if}}
+            <br/>
+            <br/>
+        {{#each links}}
+            <a href='{{this.href}}'>{{this.label}}</a>
+        {{/each}}
+
+    </div>
+</div>
+
+<script src="/index.js"></script>
